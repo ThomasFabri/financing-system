@@ -1,20 +1,20 @@
+import java.util.Scanner;
+
 class Financiamento {
 
-    //Atributos
+    // Atributos
     double valorImovel;
-
     int prazoFinanciamento;
-
     double taxaJurosAnual;
 
-    //Construtor
+    // Construtor
     Financiamento(double valorDesejadoImovel, int prazoFinanciamentoAnos, double taxaJurosAnual) {
         this.valorImovel = valorDesejadoImovel;
         this.prazoFinanciamento = prazoFinanciamentoAnos;
         this.taxaJurosAnual = taxaJurosAnual;
     }
 
-    //Metodos
+    // Métodos
     double calcularPagamentoMensal() {
         return (this.valorImovel / (this.prazoFinanciamento * 12)) * (1 + (this.taxaJurosAnual / 12));
     }
@@ -25,18 +25,21 @@ class Financiamento {
 }
 
 class InterfaceUsuario {
+
     double pedirValorImovel() {
         Scanner sc = new Scanner(System.in);
+        return sc.nextDouble();
     }
 
     int pedirPrazoFinanciamento() {
         Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
     }
 
     double pedirTaxaJuros() {
         Scanner sc = new Scanner(System.in);
+        return sc.nextDouble();
     }
-
 }
 
 public class Main {
