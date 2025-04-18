@@ -9,24 +9,31 @@ public class Main {
     public static void main(String[] args) {
 
         InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
-
         ArrayList<Financiamento> financiamentos = new ArrayList<>();
 
-        // Adicionando 4 financiamentos manualmente
-        financiamentos.add(new Financiamento(200000, 30, 0.04));
-        financiamentos.add(new Financiamento(300000, 20, 0.06));
-        financiamentos.add(new Financiamento(150000, 15, 0.03));
-        financiamentos.add(new Financiamento(250000, 25, 0.05));
+        for (int i = 1; i <= 4; i++) {
+            System.out.println("Digite os dados do financiamento " + i + ":");
 
-        double totalValorImoveis = 0;
-        double totalValorFinanciamentos = 0;
+            double valorImovel = interfaceUsuario.pedirValorImovel();
+            int prazo = interfaceUsuario.pedirPrazoFinanciamento();
+            double taxa = interfaceUsuario.pedirTaxaJuros();
 
-        for (Financiamento f : financiamentos) {
-            totalValorImoveis += f.getValorImovel();
-            totalValorFinanciamentos += f.calcularTotalPagamento();
+            Financiamento f = new Financiamento(valorImovel, prazo, taxa);
+            financiamentos.add(f);
+
+            System.out.println("Financiamento " + i + " – valor do imóvel: R$ " + f.getValorImovel() +
+                    ", valor do financiamento: R$ " + f.calcularTotalPagamento());
         }
 
-        System.out.println("Total de todos os imóveis: R$ " + totalValorImoveis);
-        System.out.println("Total de todos os financiamentos: R$ " + totalValorFinanciamentos);
+        double totalImoveis = 0;
+        double totalFinanciamentos = 0;
+
+        for (Financiamento f : financiamentos) {
+            totalImoveis += f.getValorImovel();
+            totalFinanciamentos += f.calcularTotalPagamento();
+        }
+
+        System.out.println("Total de todos os imóveis: R$ " + totalImoveis);
+        System.out.println("Total de todos os financiamentos: R$ " + totalFinanciamentos);
     }
 }
